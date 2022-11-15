@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:47:55 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/15 14:40:30 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:20:29 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (!lst || !del)
-		return (NULL);
-	
+		return ;
+	del(lst->content);
+	free(lst);
 }
