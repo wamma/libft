@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:40:20 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/14 11:25:05 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:15:40 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	len = ft_strlen(s);
 	result = (char *)malloc(sizeof(char) * len + 1);
+	if (!result)
+		return (NULL);
 	while (i < len)
 	{
 		result[i] = f(i, s[i]);

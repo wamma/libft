@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 14:24:53 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/16 18:07:34 by hyungjup         ###   ########.fr       */
+/*   Created: 2022/11/16 11:53:57 by hyungjup          #+#    #+#             */
+/*   Updated: 2022/11/16 11:55:21 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	sign;
-	int	num;
+	t_list	*new;
+	size_t	lst_len;
 
-	sign = 1;
-	num = 0;
-	while ((9 <= *str && *str <= 13) || *str == 32)
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (ft_isdigit(*str))
-	{
-		num = num * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * num);
+	lst_len = ft_strlen(lst);
 }

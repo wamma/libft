@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:00:50 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/14 15:08:18 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:03:36 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,39 @@ static int	get_len(long long n)
 	int	cnt;
 
 	cnt = 0;
-	if (n < 0)
+	if (n <= 0)
 	{
 		n *= -1;
 		cnt++;
 	}
-	while (n)
+	while (n != 0)
 	{
-		n /= 10;
 		cnt++;
+		n /= 10;
 	}
 	return (cnt);
 }
 
 char	*ft_itoa(int n)
 {
-	char		*result;
-	int			len;
-	long long	tmp;
+	char			*result;
+	unsigned int	len;
+	long long		tmp;
 
-	tmp = n;
+	tmp = (long long)n;
 	len = get_len(tmp);
-	result = (char *)malloc(sizeof(char) * len + 1);
+	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
 	result[len--] = '\0';
 	if (tmp == 0)
-		result[0] = 48;
+		result[0] = '0';
 	if (tmp < 0)
 	{
 		result[0] = '-';
 		tmp *= -1;
 	}
-	while (len > 0)
+	while (tmp > 0)
 	{
 		result[len--] = tmp % 10 + '0';
 		tmp /= 10;

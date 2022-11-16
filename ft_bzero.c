@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:13:29 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/09 12:36:58 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:45:11 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_bzero(void *s, size_t n)
 	unsigned char	*arr;
 
 	i = 0;
-	arr = (unsigned char)s;
+	arr = s;
 	while (i < n)
 	{
 		*arr = 0;

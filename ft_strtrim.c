@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:17:49 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/11 13:33:43 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:07:47 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	while (i < end)
 	{
-		if (strchr(set, s1[end - i - 1] == 0))
+		if (ft_strchr(set, s1[end - i - 1] == 0))
 			break ;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:06:31 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/09 16:48:09 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:17:37 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 
 	tmp = dest;
 	str = src;
-	if (tmp == NULL && str == NULL)
+	if (!tmp && !str)
 		return (NULL);
 	i = -1;
 	if (tmp < str)

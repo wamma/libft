@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:16:23 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/09 17:24:54 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:34:37 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ size_t	ft_strlcpy(char *restrict dest, const char *restrict src, size_t size)
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	if (size > 0)
+		dest[i] = '\0';
 	return (src_len);
 }

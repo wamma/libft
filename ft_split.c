@@ -6,24 +6,13 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:36:20 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/11 16:39:40 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:01:58 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_charset(char c, char *charset)
-{
-	while (*charset)
-	{
-		if (*charset == c)
-			return (1);
-		charset++;
-	}
-	return (0);
-}
-
-int	word_count(char *str, char *charset)
+static int	word_count(char const *str, char c)
 {
 	int	str_cnt;
 	int	flag;
@@ -32,19 +21,19 @@ int	word_count(char *str, char *charset)
 	flag = 1;
 	while (*str)
 	{
-		if (flag == 1 && !check_charset(*str, charset))
+		if (flag == 1 && *str != c)
 		{
 			str_cnt++;
 			flag = 0;
 		}
-		else if (check_charset(*str, charset))
+		else if (*str == c)
 			flag = 1;
 		str++;
 	}
 	return (str_cnt);
 }
 
-char	*str_word_print(char *str, char *charset)
+static char	*str_word_print(char const *str, char c)
 {
 	char	*word;
 	int		wc;
@@ -52,12 +41,12 @@ char	*str_word_print(char *str, char *charset)
 
 	wc = 0;
 	i = 0;
-	while (str[wc] && !check_charset(str[wc], charset))
+	while (str[wc] && str[i] != c)
 		wc++;
 	word = (char *)malloc(sizeof(char) * (wc + 1));
 	if (!word)
 		return (0);
-	while (str[i] && !check_charset(str[i], charset))
+	while (str[i] && str[i] != c)
 	{
 		word[i] = str[i];
 		i++;
@@ -66,23 +55,31 @@ char	*str_word_print(char *str, char *charset)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *str, char c)
 {
 	char	**result;
-	size_t	i;
-	size_t	len;
+	int		i;
+	int		len;
 
-	if (!s)
+	if (!str)
+		return (0);
+	len = word_count(str, c);
+	result = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!result)
 		return (NULL);
-	len = word_count(s, c);
 	i = 0;
-	while (*s)
+	while (*str)
 	{
-		while (*s && check_charset(*s, c))
-			s++;
-		if (*s && !check_charset(*s, c))
+		while (*str && *str == c)
+			str++;
+		if (*str && *str != c)
 		{
-			result[i] = str_word();
+			result[i] = str_word_print(str, c);
+			while (*str && *str != c)
+				str++;
 		}
+		i++;
 	}
+	result[len] = NULL;
+	return (result);
 }

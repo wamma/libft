@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heongjunpark <heongjunpark@student.42.f    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 09:49:46 by heongjunpar       #+#    #+#             */
-/*   Updated: 2022/11/16 09:58:23 by heongjunpar      ###   ########.fr       */
+/*   Created: 2022/11/15 16:56:25 by hyungjup          #+#    #+#             */
+/*   Updated: 2022/11/16 11:44:49 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	while (*lst)
 	{
 		new = (*lst)->next;
-		
+		ft_lstdelone(*lst, del);
 	}
-	*lst = '\0';
+	*lst = NULL;
 }
