@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:13:56 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/11 09:51:12 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:22:26 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	tmp = (char *)malloc(sizeof(char) * len + 1);
 	if (!tmp)
 		return (NULL);
-	while (i < len && start + i < s_len)
+	if (start > len)
 	{
-		tmp[i] = s[start + i];
-		i++;
+		free(tmp);
+		return (ft_strdup(""));
 	}
-	tmp[i] = '\0';
+	else
+		ft_strlcpy(tmp, s + start, len + 1);
 	return (tmp);
 }

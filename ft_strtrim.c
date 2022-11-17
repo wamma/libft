@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:17:49 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/16 14:07:47 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:01:39 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,26 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*result;
 	size_t	start;
 	size_t	end;
-	size_t	i;
 
-	if (!s1 || !set)
+	if (!s1)
 		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
 	start = 0;
 	end = ft_strlen(s1);
-	i = 0;
-	while (s1[start] && ft_strchr(set, s1[start]) && start < end)
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	while (i < end)
+	while (s1[end - 1] && ft_strchr(set, s1[end - 1]))
 	{
-		if (ft_strchr(set, s1[end - i - 1] == 0))
+		if (end - 1 < 1)
 			break ;
-		i++;
+		end--;
 	}
-	end = end - i;
-	if (start >= end)
+	if (start > end)
 		return (ft_strdup(""));
-	result = (char *)malloc(sizeof(char) * (ft_strlen(s1)+ 1));
+	result = (char *)malloc(sizeof(char) * (end - start + 1));
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, s1 + start, end - start + 1);
 	return (result);
 }
