@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:36:20 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/16 15:01:58 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:35:36 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*str_word_print(char const *str, char c)
 
 	wc = 0;
 	i = 0;
-	while (str[wc] && str[i] != c)
+	while (str[wc] && str[wc] != c)
 		wc++;
 	word = (char *)malloc(sizeof(char) * (wc + 1));
 	if (!word)
@@ -55,31 +55,44 @@ static char	*str_word_print(char const *str, char c)
 	return (word);
 }
 
+void	free_split(char **arr, int index)
+{
+	int	i;
+
+	i = 0;
+	while (i < index)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
 char	**ft_split(char const *str, char c)
 {
 	char	**result;
 	int		i;
-	int		len;
 
-	if (!str)
-		return (0);
-	len = word_count(str, c);
-	result = (char **)malloc(sizeof(char *) * (len + 1));
-	if (!result)
+	result = (char **)malloc(sizeof(char *) * (word_count(str, c) + 1));
+	if (!result || !str)
 		return (NULL);
 	i = 0;
 	while (*str)
 	{
 		while (*str && *str == c)
 			str++;
-		if (*str && *str != c)
-		{
+		if (*str == '\0')
+			break ;
 			result[i] = str_word_print(str, c);
-			while (*str && *str != c)
-				str++;
+		if (result[i] == NULL)
+		{
+			free_split(result, i);
+			return (NULL);
 		}
 		i++;
+		while (*str && *str != c)
+			str++;
 	}
-	result[len] = NULL;
+	result[i] = NULL;
 	return (result);
 }

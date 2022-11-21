@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:13:56 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/11/17 17:22:26 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:33:05 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	s_len;
 	char	*tmp;
+	int		real_len;
+	int		i;
 
+	real_len = len;
 	i = 0;
-	s_len = ft_strlen(s);
-	if (!s)
-		return (NULL);
-	tmp = (char *)malloc(sizeof(char) * len + 1);
+	if (ft_strlen(s) <= start)
+		return (ft_strdup(""));
+	if (ft_strlen(s + start) < len)
+		real_len = ft_strlen(s + start);
+	tmp = (char *)malloc(sizeof(char) * real_len + 1);
 	if (!tmp)
 		return (NULL);
-	if (start > len)
+	while (i < real_len)
 	{
-		free(tmp);
-		return (ft_strdup(""));
+		tmp[i] = s[start + i];
+		i++;
 	}
-	else
-		ft_strlcpy(tmp, s + start, len + 1);
+	tmp[i] = '\0';
 	return (tmp);
 }
